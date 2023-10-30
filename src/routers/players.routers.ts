@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { createPlayer, deletePlayerById, getPlayerById, getPlayers, getPlayersByPosition, getPlayersByPositionAndTeamCountry, getPlayersByTeam, updatePlayerById } from "../controllers/players.controllers";
+import { checkJwt } from "../middlewares/session";
 
 const router = Router()
 
@@ -18,6 +19,6 @@ router.post('/', createPlayer)
 
 router.put('/:id', updatePlayerById)
 
-router.delete('/:id', deletePlayerById)
+router.delete('/:id', checkJwt, deletePlayerById)
 
 export default router

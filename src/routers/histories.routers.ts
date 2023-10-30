@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { createHistory, deleteHistoryById, getHistoryById, getHistories, updateHistoryById, getMostTeamChanges } from "../controllers/histories.controllers";
+import { checkJwt } from "../middlewares/session";
 
 const router = Router()
 
@@ -13,6 +14,6 @@ router.post('/', createHistory)
 
 router.put('/:id', updateHistoryById)
 
-router.delete('/:id', deleteHistoryById)
+router.delete('/:id', checkJwt , deleteHistoryById)
 
 export default router

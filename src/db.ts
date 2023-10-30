@@ -2,6 +2,7 @@ import { DataSource } from 'typeorm'
 import Player from './entities/Player'
 import Team from './entities/Team'
 import History from './entities/History'
+import User from './entities/User'
 
  const  AppDataSource = new DataSource({
     type: 'postgres',
@@ -10,7 +11,7 @@ import History from './entities/History'
     password: 'Godiva11**',
     port: 5432,
     database: 'aoki',
-    entities: [Player, Team, History ],
+    entities: [Player, Team, History, User ],
     logging: true,
     synchronize: true
 })
