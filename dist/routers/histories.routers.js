@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const histories_controllers_1 = require("../controllers/histories.controllers");
+const router = (0, express_1.Router)();
+router.get('/getMostTeamChanges', histories_controllers_1.getMostTeamChanges);
+router.get('/:id', histories_controllers_1.getHistoryById);
+router.get('/', histories_controllers_1.getHistories);
+router.post('/', histories_controllers_1.createHistory);
+router.put('/:id', histories_controllers_1.updateHistoryById);
+router.delete('/:id', histories_controllers_1.deleteHistoryById);
+exports.default = router;

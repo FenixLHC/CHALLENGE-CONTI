@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const teams_controllers_1 = require("../controllers/teams.controllers");
+const router = (0, express_1.Router)();
+router.get('/underAgePlayers', teams_controllers_1.getUnderAgePlayersByTeam);
+router.get('/:id', teams_controllers_1.getTeamById);
+router.get('/', teams_controllers_1.getTeams);
+router.post('/', teams_controllers_1.createTeam);
+router.put('/:id', teams_controllers_1.updateTeamById);
+router.delete('/:id', teams_controllers_1.deleteTeamById);
+exports.default = router;

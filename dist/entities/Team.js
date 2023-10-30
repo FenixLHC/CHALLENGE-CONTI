@@ -8,12 +8,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
-let Team = class Team {
+const Player_1 = __importDefault(require("./Player"));
+const History_1 = __importDefault(require("./History"));
+let Team = class Team extends typeorm_1.BaseEntity {
 };
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", String)
 ], Team.prototype, "id", void 0);
 __decorate([
@@ -28,7 +33,15 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Team.prototype, "country", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => Player_1.default, (player) => player.team),
+    __metadata("design:type", Array)
+], Team.prototype, "players", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => History_1.default, history => history.team),
+    __metadata("design:type", Array)
+], Team.prototype, "histories", void 0);
 Team = __decorate([
     (0, typeorm_1.Entity)()
 ], Team);
-module.exports = Team;
+exports.default = Team;

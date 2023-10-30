@@ -8,37 +8,57 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const { Entity, CreateDateColumn, Column } = require('typeorm');
-let Player = class Player {
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const typeorm_1 = require("typeorm");
+const Team_1 = __importDefault(require("./Team"));
+const History_1 = __importDefault(require("./History"));
+let Player = class Player extends typeorm_1.BaseEntity {
 };
 __decorate([
-    Column(),
+    (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", String)
 ], Player.prototype, "id", void 0);
 __decorate([
-    Column(),
+    (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Player.prototype, "Name", void 0);
+], Player.prototype, "name", void 0);
 __decorate([
-    Column(),
+    (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Player.prototype, "lastname", void 0);
 __decorate([
-    Column(),
+    (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
 ], Player.prototype, "age", void 0);
 __decorate([
-    Column(),
+    (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Player.prototype, "position", void 0);
 __decorate([
-    CreateDateColumn(),
+    (0, typeorm_1.Column)({ default: true }),
+    __metadata("design:type", Boolean)
+], Player.prototype, "active", void 0);
+__decorate([
+    (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)
 ], Player.prototype, "createdAt", void 0);
 __decorate([
-    CreateDateColumn(),
+    (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)
 ], Player.prototype, "updateAt", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => Team_1.default, team => team.players),
+    (0, typeorm_1.JoinColumn)({ name: 'teamId' }),
+    __metadata("design:type", Team_1.default)
+], Player.prototype, "team", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => History_1.default, history => history.player),
+    __metadata("design:type", Array)
+], Player.prototype, "histories", void 0);
 Player = __decorate([
-    Entity()
+    (0, typeorm_1.Entity)()
 ], Player);
+exports.default = Player;
