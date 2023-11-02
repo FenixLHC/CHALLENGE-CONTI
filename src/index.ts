@@ -1,8 +1,11 @@
 require("reflect-metadata")
 import app from './app'
 import DB from './db'
-const PORT = process.env.PORT || 3000
+import dotenv from 'dotenv';
 
+dotenv.config();
+const PORT = process.env.PORT || 3000
+console.log('puerto',process.env.PORT)
 async function main(){
     try {
         await DB.initialize()

@@ -1,0 +1,22 @@
+version: '3.7'
+services:
+  db:
+    image: postgres:13-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=aoki
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    ports:
+     - "5432:5432"
+  api:
+    image: playerssystemmanager:latest
+    restart: always
+    environment:
+      - DB_HOST=localhost
+      - DB_PORT=5432
+    depends_on:
+      - db
+    ports:
+    - "3000:3000" 
